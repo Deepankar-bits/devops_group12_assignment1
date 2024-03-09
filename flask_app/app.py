@@ -10,7 +10,7 @@ def hello():
 
 
 
-#/convert_epoch?epoch_time=1615304400
+#/convert_epoch?epoch_time=<epoch time>
 @app.route('/convert_epoch', methods=['GET'])
 def convert_epoch_to_datetime():
     epoch_time = request.args.get('epoch_time')
@@ -66,9 +66,9 @@ def convert_epoch_to_datetime():
 
 def epoch_to_datetime(epoch_time):
     try:
-        # Convert epoch time to datetime object
+        # Convert epoch time to utc 
         utc_time = datetime.utcfromtimestamp(epoch_time).replace(tzinfo=pytz.utc)
-        return utc_time.strftime('%Y-%m-%d %H:%M:%S')  # Format the datetime as string
+        return utc_time.strftime('%Y-%m-%d %H:%M:%S')  
     except Exception as e:
         return str(e)
 
